@@ -2,22 +2,21 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
-
+    branches: ["main"]
+  schedule:
+    - cron: "*/2 * * * *"
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+      - uses: actions/checkout@v4
+      - name: configure
+        run: sudo apt install build-essential
+      - name: Compile files
+        run: |
+          gcc -o tests test1.c folder/test2.c
+      - name: Run program
+        run: ./tests

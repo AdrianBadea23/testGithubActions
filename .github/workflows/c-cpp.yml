@@ -16,12 +16,12 @@ jobs:
         run: sudo apt-get install -y libcriterion-dev
       - name: Compile files
         run: |
-          gcc -o test1 test1.c.test -lcriterion
+          gcc -o test1 test1.c -lcriterion
       - name: Run program
         run: ./test1
       - name: Compile test 2
         run: |
-          gcc -o test2 folder/test2.c.test -lcriterion
+          gcc -o test2 folder/test2.c -lcriterion
       - name: Run test 2
         run: |
           cd folder/

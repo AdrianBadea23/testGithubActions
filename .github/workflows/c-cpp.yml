@@ -17,6 +17,13 @@ jobs:
         run: sudo apt install build-essential
       - name: Compile files
         run: |
-          gcc -o tests test1.c folder/test2.c
+          gcc -o test1 test1.c
       - name: Run program
-        run: ./tests
+        run: ./test1
+      - name: Compile test 2
+        run: |
+          gcc -o test2 folder/test2.c
+      - name: Run test 2
+        run: |
+          cd folder/
+          ./test2

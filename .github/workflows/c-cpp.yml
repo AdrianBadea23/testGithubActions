@@ -13,7 +13,7 @@ jobs:
       - name: configure
         run: sudo apt install -y build-essential
       - name: criterion config
-        run: sudo apt install -y criterion-dev
+        run: sudo apt-get install -y libcriterion-dev
       - name: Compile files
         run: |
           gcc -o test1 test1.c.test -lcriterion -lgcov

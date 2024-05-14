@@ -1,8 +1,9 @@
 name: C/C++ CI
 
 on:
-  schedule:
-    - cron: "*/6 * * * *"
+  push:
+    branches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -10,15 +11,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: configure
-        run: sudo apt install build-essential
+        run: sudo apt install -y build-essential
+      - name: criterion config
+        run: sudo apt install -y criterion-dev
       - name: Compile files
         run: |
-          gcc -o test1 test1.c
+          gcc -o test1 test1.c.test -lcriterion -lgcov
       - name: Run program
         run: ./test1
       - name: Compile test 2
         run: |
-          gcc -o test2 folder/test2.c
+          gcc -o test2 folder/test2.c.test -lcriterion -lgcov
       - name: Run test 2
         run: |
           cd folder/
